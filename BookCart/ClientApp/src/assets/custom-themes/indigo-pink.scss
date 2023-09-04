@@ -1,0 +1,8 @@
+@import "../../app-theme";
+
+$primary: mat-palette($mat-grey);
+$accent: mat-palette($mat-grey, A200, A200, A200);
+
+$theme: mat-light-theme($primary, $accent);
+@include angular-material-theme($theme);
+@include material-custom-theme($theme);
