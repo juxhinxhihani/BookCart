@@ -34,7 +34,9 @@ export class BookFormComponent implements OnInit, OnDestroy {
       title: ['', Validators.required],
       author: ['', Validators.required],
       category: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
+      price: [0.0, [Validators.min(0)]],
+      isActive: true,
+      toBoook : [true]
     });
   }
 
@@ -53,7 +55,9 @@ export class BookFormComponent implements OnInit, OnDestroy {
   get price() {
     return this.bookForm.get('price');
   }
-
+  get toBoook() {
+    return this.bookForm.get('toBoook');
+  }
   ngOnInit() {
     this.bookService.categories$
       .pipe(takeUntil(this.unsubscribe$))
@@ -95,6 +99,14 @@ export class BookFormComponent implements OnInit, OnDestroy {
         this.formData.append('file' + j, this.files[j]);
       }
     }
+    console.log(this.bookForm.value.price);
+
+    if (this.bookForm.value.price == null){
+      this.bookForm.value.price = (0).toFixed(2);
+      console.log(this.bookForm.value.price);
+    }
+    this.bookForm.value.toBoook = parseInt(this.bookForm.value.toBoook);
+    console.log(this.bookForm.value.toBoook);
     this.formData.append('bookFormData', JSON.stringify(this.bookForm.value));
 
     if (this.bookId) {

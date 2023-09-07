@@ -3,7 +3,6 @@ import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { SubscriptionService } from './subscription.service';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +19,7 @@ export class AuthenticationService {
     return this.http.post<any>('https://localhost:5001/api/login', user)
       .pipe(map(response => {
         if (response && response.token) {
+          console.log(response);
           this.oldUserId = localStorage.getItem('userId');
           localStorage.setItem('authToken', response.token);
           this.setUserDetails();

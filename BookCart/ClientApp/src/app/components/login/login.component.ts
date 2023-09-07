@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   showPassword = true;
   userId;
+  userTypeID: number;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -46,18 +47,29 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((data: User) => {
         this.userId = data.userId;
+        this.userTypeID = data.userTypeId;
       });
   }
 
   login() {
     if (this.loginForm.valid) {
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+      let returnUrl;
+
       this.authenticationService.login(this.loginForm.value)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(
-          () => {
+          (response) => {
             this.setShoppingCart();
             this.setWishlist();
+            console.log(returnUrl);
+            console.log(response.userDetails.userTypeId);
+            if(response.userDetails.userTypeId == 1) {
+              returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/home';
+
+            }
+            else{
+              returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+            }
             this.router.navigate([returnUrl]);
           },
           () => {

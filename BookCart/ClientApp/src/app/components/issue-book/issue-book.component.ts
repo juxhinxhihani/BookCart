@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Book } from 'src/app/models/book';
-import { ActivatedRoute } from '@angular/router';
-import { BookService } from 'src/app/services/book.service';
-import { switchMap } from 'rxjs/operators';
-import { SubscriptionService } from 'src/app/services/subscription.service';
+import { Component, OnInit } from '@angular/core';
+import {Book} from "../../models/book";
+import {ActivatedRoute} from "@angular/router";
+import {BookService} from "../../services/book.service";
+import {SubscriptionService} from "../../services/subscription.service";
+import {switchMap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-issue-book',
+  templateUrl: './issue-book.component.html',
+  styleUrls: ['./issue-book.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class IssueBookComponent implements OnInit {
 
   public books: Book[];
   public filteredProducts: Book[];
@@ -53,13 +53,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     const filteredData = this.filteredProducts.filter(b => b.price <= this.priceRange).slice();
 
     if (this.category) {
-      this.books = filteredData.filter(b => b.category.toLowerCase() === this.category.toLowerCase()
-        && b.isActive === true && b.toBoook == false);
+      this.books = filteredData.filter(b => b.category.toLowerCase() === this.category.toLowerCase() &&
+        b.isActive === true && b.toBoook === true);
     } else if (this.searchItem) {
       this.books = filteredData.filter(b => (b.title.toLowerCase().indexOf(this.searchItem) !== -1
-        || b.author.toLowerCase().indexOf(this.searchItem) !== -1) && b.isActive === true && b.toBoook == false);
+        || b.author.toLowerCase().indexOf(this.searchItem) !== -1) && b.isActive === true && b.toBoook === true);
     } else {
-      this.books = filteredData.filter(b => b.isActive === true && b.toBoook == false);
+      this.books = filteredData.filter(b => b.isActive === true && b.toBoook === true);
     }
     this.isLoading = false;
   }
@@ -67,4 +67,5 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptionService.searchItemValue$.next('');
   }
+
 }

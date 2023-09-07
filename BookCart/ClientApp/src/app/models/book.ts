@@ -5,4 +5,6 @@ export class Book {
     category: string;
     price: number;
     coverFileName: string;
+    isActive:boolean;
+    toBoook:boolean;
 }

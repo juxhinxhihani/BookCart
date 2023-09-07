@@ -1,0 +1,30 @@
+.card-wrapper {
+  max-width: 1000px;
+  min-width: 350px;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  margin-top: 2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+.float-container {
+  border: none;
+  border-radius: 1rem;
+}
+
+.float-child {
+  float: left;
+  border: none;
+  border-radius: 1rem;
+}
+.card-book-choose{
+  text-decoration: none !important;
+  color: inherit;
+  padding: 10px
+}
+.card-book-choose:hover{
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}

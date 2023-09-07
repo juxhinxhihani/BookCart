@@ -29,6 +29,8 @@ import { PriceFilterComponent } from './components/price-filter/price-filter.com
 import { SearchComponent } from './components/search/search.component';
 import { AddtowishlistComponent } from './components/addtowishlist/addtowishlist.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import {BuyOrBookComponent} from "./components/buy-or-book/buy-or-book.component";
+import { IssueBookComponent } from './components/issue-book/issue-book.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     PriceFilterComponent,
     SearchComponent,
     AddtowishlistComponent,
-    WishlistComponent
+    WishlistComponent,
+    BuyOrBookComponent,
+    IssueBookComponent
   ],
   imports: [
     NgMaterialModule,

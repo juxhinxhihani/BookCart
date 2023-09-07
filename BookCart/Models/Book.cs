@@ -11,5 +11,8 @@ namespace BookCart.Models
         public string Category { get; set; }
         public decimal Price { get; set; }
         public string CoverFileName { get; set; }
+        public bool isActive { get; set; }
+        public bool toBoook { get; set; }
+
     }
 }
