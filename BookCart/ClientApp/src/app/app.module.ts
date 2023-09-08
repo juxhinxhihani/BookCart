@@ -31,6 +31,8 @@ import { AddtowishlistComponent } from './components/addtowishlist/addtowishlist
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import {BuyOrBookComponent} from "./components/buy-or-book/buy-or-book.component";
 import { IssueBookComponent } from './components/issue-book/issue-book.component';
+import { BookIssuedBooksComponent } from './components/book-issued-books/book-issued-books.component';
+import { BookFormComponent } from './components/book-form/book-form.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { IssueBookComponent } from './components/issue-book/issue-book.component
     AddtowishlistComponent,
     WishlistComponent,
     BuyOrBookComponent,
-    IssueBookComponent
+    IssueBookComponent,
+    BookIssuedBooksComponent,
+    BookFormComponent
   ],
   imports: [
     NgMaterialModule,

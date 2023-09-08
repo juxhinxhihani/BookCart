@@ -1,47 +1,36 @@
 ﻿<Properties StartupConfiguration="{E03028FE-42A7-4AA8-97B0-8673A6D3A9F1}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.BookCart PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BookCart/.gitignore">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BookCart/appsettings.json">
     <Files>
-      <File FileName="BookCart/Properties/launchSettings.json" Line="1" Column="1" />
-      <File FileName="BookCart/appsettings.json" Line="19" Column="1" />
-      <File FileName="BookCart/Program.cs" Line="16" Column="1" />
-      <File FileName="BookCart/Startup.cs" Line="38" Column="26" />
-      <File FileName="BookCart/BookCart.csproj" Line="1" Column="1" />
-      <File FileName="BookCart/ClientApp/src/app/components/addtowishlist/addtowishlist.component.html" Line="9" Column="13" />
-      <File FileName="BookCart/ClientApp/src/app/components/book-details/book-details.component.html" Line="29" Column="56" />
-      <File FileName="BookCart/ClientApp/src/app/components/book-card/book-card.component.html" Line="18" Column="42" />
-      <File FileName="BookCart/ClientApp/src/app/components/price-filter/price-filter.component.html" Line="17" Column="1" />
-      <File FileName="BookCart/.gitignore" Line="29" Column="1" />
+      <File FileName="BookCart/Controllers/CheckOutController.cs" />
+      <File FileName="BookCart/Controllers/ShoppingCartController.cs" />
+      <File FileName="BookCart/Interfaces/ICartService.cs" />
+      <File FileName="BookCart/DataAccess/CartDataAccessLayer.cs" />
+      <File FileName="BookCart/Interfaces/IBookService.cs" />
+      <File FileName="BookCart/DataAccess/BookDataAccessLayer.cs" />
+      <File FileName="BookCart/Models/BookDBContext.cs" />
+      <File FileName="BookCart/appsettings.json" Line="14" Column="26" />
+      <File FileName="BookCart/Controllers/WishlistController.cs" Line="17" Column="69" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="BookCart" expanded="True">
-            <Node name="BookCart">
-              <Node name="ClientApp" expanded="True">
-                <Node name="src" expanded="True">
-                  <Node name="app" expanded="True">
-                    <Node name="components" expanded="True">
-                      <Node name="addtowishlist" expanded="True" />
-                      <Node name="book-card" expanded="True" />
-                      <Node name="price-filter" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
+          <Node name="BookCart">
+            <Node name="BookCart" expanded="True" selected="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="DataAccess" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Models" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.BookCart PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

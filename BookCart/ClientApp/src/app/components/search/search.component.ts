@@ -4,7 +4,7 @@ import { startWith, map } from 'rxjs/operators';
 import { BookService } from 'src/app/services/book.service';
 import { Book } from 'src/app/models/book';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { SubscriptionService } from 'src/app/services/subscription.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   filteredBooks: Observable<Book[]>;
 
   constructor(
+    private route: ActivatedRoute,
     private bookService: BookService,
     private router: Router,
     private subscriptionService: SubscriptionService) { }
@@ -41,7 +42,9 @@ export class SearchComponent implements OnInit {
   }
 
   cancelSearch(){
-    this.router.navigate(['/']);
+    let returnUrl;
+    returnUrl = this.route.snapshot.url[0].path
+    this.router.navigate([returnUrl]);
   }
 
   private loadBookData() {

@@ -23,6 +23,7 @@ namespace BookCart.Models
         public virtual DbSet<UserType> UserType { get; set; }
         public virtual DbSet<Wishlist> Wishlist { get; set; }
         public virtual DbSet<WishlistItems> WishlistItems { get; set; }
+        public virtual DbSet<IssuedBook> IssuedBook { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -184,7 +185,15 @@ namespace BookCart.Models
                     .HasMaxLength(36)
                     .IsUnicode(false);
             });
+            modelBuilder.Entity<IssuedBook>(entity =>
+            {
+                entity.HasKey(e => e.issueId)
+                    .HasName("PK_IssuedBook");
 
+                //etity.Property(e => e.startDate).HasColumnType("datetime");
+                //entity.Property(e => e.endDate).HasColumnType("datetime");
+
+            });
             OnModelCreatingPartial(modelBuilder);
         }
 
