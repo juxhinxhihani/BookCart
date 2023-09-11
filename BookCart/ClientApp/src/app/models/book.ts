@@ -7,4 +7,5 @@ export class Book {
     coverFileName: string;
     isActive:boolean;
     toBoook:boolean;
+    stock: number;
 }

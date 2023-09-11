@@ -13,6 +13,7 @@ namespace BookCart.Models
         public string CoverFileName { get; set; }
         public bool isActive { get; set; }
         public bool toBoook { get; set; }
+        public int? stock { get; set; }
 
     }
 }

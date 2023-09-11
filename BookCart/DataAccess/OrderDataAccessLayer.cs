@@ -43,6 +43,9 @@ namespace BookCart.DataAccess
                         Quantity = order.Quantity,
                         Price = order.Book.Price
                     };
+                    var bookStock = _dbContext.Book.FirstOrDefault(x => x.BookId == order.Book.BookId);
+                    bookStock.stock = bookStock.stock - order.Quantity;
+                    _dbContext.Update(bookStock);
                     _dbContext.CustomerOrderDetails.Add(productDetails);
                     _dbContext.SaveChanges();
                 }

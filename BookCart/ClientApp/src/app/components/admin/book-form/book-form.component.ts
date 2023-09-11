@@ -36,7 +36,8 @@ export class BookFormComponent implements OnInit, OnDestroy {
       category: ['', Validators.required],
       price: [0.0, [Validators.min(0)]],
       isActive: true,
-      toBoook : [true]
+      toBoook : [true],
+      stock: 1
     });
   }
 
@@ -54,6 +55,9 @@ export class BookFormComponent implements OnInit, OnDestroy {
 
   get price() {
     return this.bookForm.get('price');
+  }
+  get stock() {
+    return this.bookForm.get('stock');
   }
   get toBoook() {
     return this.bookForm.get('toBoook');
@@ -103,9 +107,11 @@ export class BookFormComponent implements OnInit, OnDestroy {
 
     if (this.bookForm.value.price == null){
       this.bookForm.value.price = (0).toFixed(2);
+      this.bookForm.value.stock = (1).toFixed(2);
       console.log(this.bookForm.value.price);
     }
     this.bookForm.value.toBoook = parseInt(this.bookForm.value.toBoook);
+    this.bookForm.value.stock = parseInt(this.bookForm.value.stock);
     console.log(this.bookForm.value.toBoook);
     this.formData.append('bookFormData', JSON.stringify(this.bookForm.value));
 

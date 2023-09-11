@@ -21,7 +21,7 @@ namespace BookCart.DataAccess
         {
             try
             {
-                return _dbContext.Book.AsNoTracking().ToList();
+                return _dbContext.Book.AsNoTracking().Where(x => x.stock > 0).ToList();
             }
             catch
             {

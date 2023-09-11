@@ -42,6 +42,10 @@
                             <mat-error *ngIf="price.touched && price.hasError('min')">Price cannot be less than 0
                             </mat-error>
                         </mat-form-field>
+                      <mat-form-field class="full-width" *ngIf="second.value != 1">
+                        <input type="number" matInput placeholder="Stock" formControlName="stock">
+                        <mat-error *ngIf="stock.touched && stock.invalid">Stock is required</mat-error>
+                      </mat-form-field>
                         <mat-card-actions align="right">
                             <div fxFlex></div>
                             <button type="submit" mat-raised-button color="primary">SAVE</button>

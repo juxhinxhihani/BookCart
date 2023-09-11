@@ -20,25 +20,32 @@ namespace BookCart.DataAccess
         {
             string cartId = GetCartId(userId);
             int quantity = 1;
-
-            CartItems existingCartItem = _dbContext.CartItems.FirstOrDefault(x => x.ProductId == bookId && x.CartId == cartId);
-
-            if (existingCartItem != null)
+            if (_dbContext.Book.FirstOrDefault(x => x.BookId == bookId).toBoook)
             {
-                existingCartItem.Quantity += 1;
-                _dbContext.Entry(existingCartItem).State = EntityState.Modified;
-                _dbContext.SaveChanges();
+                throw new Exception("Can not add to cart books that are for reserve");
             }
             else
             {
-                CartItems cartItems = new CartItems
+                CartItems existingCartItem =
+                    _dbContext.CartItems.FirstOrDefault(x => x.ProductId == bookId && x.CartId == cartId);
+
+                if (existingCartItem != null)
                 {
-                    CartId = cartId,
-                    ProductId = bookId,
-                    Quantity = quantity
-                };
-                _dbContext.CartItems.Add(cartItems);
-                _dbContext.SaveChanges();
+                    existingCartItem.Quantity += 1;
+                    _dbContext.Entry(existingCartItem).State = EntityState.Modified;
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    CartItems cartItems = new CartItems
+                    {
+                        CartId = cartId,
+                        ProductId = bookId,
+                        Quantity = quantity
+                    };
+                    _dbContext.CartItems.Add(cartItems);
+                    _dbContext.SaveChanges();
+                }
             }
         }
 
