@@ -1,0 +1,26 @@
+<div class="main-div">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Reserve form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="reserveForm">
+<!--        <mat-label>Reserve Form</mat-label>-->
+        <br>
+        <mat-form-field class="mat-form-field-fluid">
+<!--          <button prefix mat-icon-button disabled=true style="margin-right: 22px;">+355</button>-->
+          <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+          <mat-error style="margin-bottom: 15px" *ngIf="phoneNumber.touched && phoneNumber.invalid">Phone number is
+            required</mat-error>
+        </mat-form-field><br>
+        <mat-label>Start Time</mat-label><br>
+        <mat-form-field class="mat-form-field-fluid">
+          <input matInput type="date" [value]="todaydate"  min="{{getDateTime()}}" class="control" formControlName="startDate" name="startDate" placeholder="Start Date">
+        </mat-form-field>
+        <br>
+        <br>
+        <button style="margin-top: 5px" id="btn1" mat-raised-button color="primary" [mat-dialog-close]="true" type="submit" (click)="reserveBook()">Save</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

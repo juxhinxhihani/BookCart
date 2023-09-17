@@ -6,7 +6,7 @@
   align-items: center;
   position: relative;
   margin-top: 2rem;
-  margin-left: 4rem;
+  margin-left: 3.7rem;
   margin-right: 4rem;
 }
 .float-container {
@@ -27,4 +27,10 @@
 .card-book-choose:hover{
   transform: scale(1.02);
   transition: transform 0.2s ease-in-out;
+}
+@media only screen and (width < 430px) {
+  .card-wrapper {
+    margin-left: 0.4rem;
+    justify-content: center;
+  }
 }

@@ -1,12 +1,12 @@
-<div class="row no-gutters pt-3">
+<div class="row no-gutters pt-2">
   <div class="col-md-3 col-sm-12">
-    <div class="filter-container">
+    <div class="filter-container" style="margin-bottom: 1rem">
       <app-book-filter [category]="category"></app-book-filter>
     </div>
   </div>
   <div class="col mb-3">
-    <div *ngIf="books?.length>0; else nodata" class="d-flex justify-content-start card-deck-container mb-4">
-      <div *ngFor="let book of books" class="p-1">
+    <div *ngIf="books?.length>0; else nodata" class="d-flex card-deck-container mb-4">
+      <div *ngFor="let book of books" class="p-1 card-cont">
         <app-book-card [book]="book"></app-book-card>
       </div>
     </div>

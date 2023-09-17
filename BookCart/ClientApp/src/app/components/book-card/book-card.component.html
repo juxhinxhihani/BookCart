@@ -1,5 +1,5 @@
 <mat-card class="book-card mat-elevation-z2" [class.on-book-card-hover]="isActive" (mouseover)="isActive=true"
-    (mouseout)="isActive=false">
+    (mouseout)="isActive=false" >
     <mat-card-content class="image-card">
         <a [routerLink]="['/books/details/',book.bookId]" matTooltip="{{book.title}}" matTooltipClass="example-tooltip"
             aria-label="Book title"><img class="preview-image" mat-card-image src="/Upload/{{book.coverFileName}}"

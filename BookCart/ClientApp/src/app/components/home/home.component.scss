@@ -9,7 +9,10 @@
   -webkit-box-flex: 1;
   -ms-box-flex: 1;
   -moz-box-flex: 1;
+  flex:1;
+  justify-content: flex-start;
   width: 100%;
+  margin-left: 1rem;
 }
 
 .filter-container {
@@ -18,9 +21,22 @@
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
   .filter-container {
       position: relative;
       width: 100%;
+
   }
 }
+@media only screen and (width < 450px) {
+  .card-deck-container {
+    justify-content: center;
+    margin-left: 0rem;
+  }
+}
+@media only screen and (width < 450px) {
+  .card-cont {
+    width: 47%;
+  }
+}
+

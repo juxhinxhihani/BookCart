@@ -9,7 +9,9 @@ $color-hover: #777777;
 
 .preview-image {
   max-height: 250px;
+  min-height: 250px;
   max-width: 200px;
+  min-width: 200px;
   cursor: pointer;
 }
 
@@ -26,10 +28,52 @@ $color-hover: #777777;
   overflow: hidden;
 }
 
+@media only screen and (width < 450px) {
+  .preview-image {
+    max-height: 220px;
+    min-width: 160px;
+    max-width: 160px;
+  }
+}
+@media only screen and (width < 450px) {
+  .book-card {
+    min-width: 160px;
+    max-width: 160px;
+
+  }
+}
+@media only screen and (width < 380px) {
+  .preview-image {
+    max-height: 180px;
+    min-width: 140px;
+    max-width: 140px;
+  }
+}
+@media only screen and (width < 380px) {
+  .book-card {
+    min-width: 140px;
+    max-width: 140px;
+  }
+}
 .mat-card-content {
   margin-bottom: 0;
 }
-
+@media only screen and (width < 350px) {
+  .preview-image {
+    max-height: 50px;
+    min-width: 105px;
+    max-width: 105px;
+  }
+}
+@media only screen and (width < 350px) {
+  .book-card {
+    min-width: 105px;
+    max-width: 105px;
+  }
+}
+.mat-card-content {
+  margin-bottom: 0;
+}
 .on-book-card-hover {
   @include mat-elevation(8, $color-hover, 16);
 }

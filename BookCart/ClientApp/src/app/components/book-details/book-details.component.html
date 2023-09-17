@@ -24,10 +24,11 @@
                     <td><strong>Category</strong></td>
                     <td>{{book.category}}</td>
                 </tr>
-                <tr>
+                <tr *ngIf="book.price != 0.00">
                     <td><strong>Price</strong></td>
                     <td>{{book.price | currency : 'EUR'}}</td>
                 </tr>
+
             </table>
             <div fxLayoutGap="10px grid">
 
@@ -46,4 +47,4 @@
     </div>
 </div>
 
-<app-similarbooks [bookId]="bookId"> </app-similarbooks>
+<app-similarbooks [bookId]="bookId" [bookType] =  "bookType"> </app-similarbooks>

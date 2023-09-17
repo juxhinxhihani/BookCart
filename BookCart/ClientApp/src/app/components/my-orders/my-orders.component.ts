@@ -53,7 +53,7 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
           this.dataSource.data = Object.values(result);
           this.isLoading = false;
         }
-      }, error => {
+      } , error => {
         console.log('Error ocurred while fetching my order details : ', error);
       });
   }

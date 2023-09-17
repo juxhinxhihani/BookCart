@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../../services/cart.service";
 import {SnackbarService} from "../../services/snackbar.service";
 import {SubscriptionService} from "../../services/subscription.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ReserveBookComponent} from "../reserve-book/reserve-book.component";
 
 @Component({
   selector: 'app-book-issued-books',
@@ -16,7 +19,10 @@ export class BookIssuedBooksComponent implements OnInit {
   userId;
 
   constructor(
+    private route: ActivatedRoute,
     private cartService: CartService,
+    private router:Router,
+    private dialog : MatDialog,
     private snackBarService: SnackbarService,
     private subscriptionService: SubscriptionService) {
     this.userId = localStorage.getItem('userId');
@@ -30,6 +36,24 @@ export class BookIssuedBooksComponent implements OnInit {
       }, error => {
         console.log('Error ocurred while addToCart data : ', error);
       });
+  }
+
+  reserveBook() {
+    const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "80%";
+    this.dialog.open(ReserveBookComponent, {panelClass: 'full-width-dialog',  data : { element:
+        this.bookId} }
+    ).afterClosed().subscribe({next: value =>{
+        if (value){
+          this.ngOnInit();
+        }
+      }
+    })
+    var returnUrl = this.router.url;
+    this.router.navigate([returnUrl])
+
   }
 
   ngOnInit(): void {

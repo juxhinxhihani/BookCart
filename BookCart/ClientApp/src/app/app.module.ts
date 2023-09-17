@@ -33,6 +33,7 @@ import {BuyOrBookComponent} from "./components/buy-or-book/buy-or-book.component
 import { IssueBookComponent } from './components/issue-book/issue-book.component';
 import { BookIssuedBooksComponent } from './components/book-issued-books/book-issued-books.component';
 import { BookFormComponent } from './components/book-form/book-form.component';
+import { ReserveBookComponent } from './components/reserve-book/reserve-book.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { BookFormComponent } from './components/book-form/book-form.component';
     BuyOrBookComponent,
     IssueBookComponent,
     BookIssuedBooksComponent,
-    BookFormComponent
+    BookFormComponent,
+    ReserveBookComponent
   ],
   imports: [
     NgMaterialModule,
