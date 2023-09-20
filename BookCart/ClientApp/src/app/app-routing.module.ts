@@ -14,6 +14,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import {BuyOrBookComponent} from "./components/buy-or-book/buy-or-book.component";
 import {IssueBookComponent} from "./components/issue-book/issue-book.component";
+import {IssuedBookListComponent} from "./components/issued-book-list/issued-book-list.component";
+import {PendingListComponent} from "./components/pending-list/pending-list.component";
 
 const appRoutes: Routes = [
   { path: '', component: BuyOrBookComponent, pathMatch: 'full' },
@@ -22,11 +24,13 @@ const appRoutes: Routes = [
   { path: 'filter', component: HomeComponent },
   { path: 'search', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'reservations', component: IssuedBookListComponent, canActivate: [AuthGuard]},
   { path: 'register', component: UserRegistrationComponent },
   { path: 'books/details/:id', component: BookDetailsComponent },
   { path: 'shopping-cart', component: ShoppingcartComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'myorders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'pendings', component: PendingListComponent, canActivate: [AuthGuard] },
   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
   {
     path: 'admin/books',

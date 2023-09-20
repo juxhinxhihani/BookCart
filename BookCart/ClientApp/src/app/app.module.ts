@@ -34,6 +34,8 @@ import { IssueBookComponent } from './components/issue-book/issue-book.component
 import { BookIssuedBooksComponent } from './components/book-issued-books/book-issued-books.component';
 import { BookFormComponent } from './components/book-form/book-form.component';
 import { ReserveBookComponent } from './components/reserve-book/reserve-book.component';
+import { IssuedBookListComponent } from './components/issued-book-list/issued-book-list.component';
+import { PendingListComponent } from './components/pending-list/pending-list.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { ReserveBookComponent } from './components/reserve-book/reserve-book.com
     IssueBookComponent,
     BookIssuedBooksComponent,
     BookFormComponent,
-    ReserveBookComponent
+    ReserveBookComponent,
+    IssuedBookListComponent,
+    PendingListComponent
   ],
   imports: [
     NgMaterialModule,

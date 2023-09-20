@@ -96,6 +96,7 @@ namespace BookCart.DataAccess
                 issuedbook.returned = book.returned;
                 issuedbook.Category = dbBbook.Category;
                 issuedbook.phoneNumber = book.phoneNumber;
+                issuedbook.returnDate = book.returnDate;
                 booksList.Add(issuedbook);
             }
 

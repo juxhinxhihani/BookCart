@@ -26,8 +26,10 @@
                     <mat-icon>account_circle</mat-icon> {{userData.username}} <mat-icon>arrow_drop_down</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]='["/myorders"]'>My Orders</button>
-                    <button mat-menu-item (click)=logout()>Logout</button>
+                  <button mat-menu-item [routerLink]='["/myorders"]'>My Orders</button>
+                  <button *ngIf="userData.userTypeId!=userType.admin" mat-menu-item [routerLink]='["/reservations"]'>My Reservations</button>
+                  <button *ngIf="userData.userTypeId==userType.admin" mat-menu-item [routerLink]='["/pendings"]'>Pending for approve </button>
+                  <button mat-menu-item (click)=logout()>Logout</button>
                 </mat-menu>
             </ng-container>
             <app-theme-picker></app-theme-picker>

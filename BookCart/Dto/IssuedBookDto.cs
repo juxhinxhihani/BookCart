@@ -15,6 +15,7 @@ namespace BookCart.Dto
         public string Author { get; set; }
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
+        public DateTime? returnDate { get; set; }
         public int returned { get; set; }
         public string phoneNumber { get; set; }
         
