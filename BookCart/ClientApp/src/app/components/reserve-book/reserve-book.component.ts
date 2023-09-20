@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {DatePipe} from "@angular/common";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {IssuedBookService} from "../../services/issued-book.service";
 
 @Component({
   selector: 'app-reserve-book',
@@ -21,19 +22,19 @@ export class ReserveBookComponent implements OnInit {
               private http : HttpClient,
               private router : Router,
               private _snackBar: MatSnackBar,
+              private issuedService: IssuedBookService,
               private datePipe : DatePipe,
               @Inject(MAT_DIALOG_DATA) public data: {element: any}) {
                   this.userId = localStorage.getItem('userId');
               }
 
   reserveForm = new FormGroup({
-    phoneNumber : new FormControl('', [Validators.required]),
-    product_id : new FormControl('', [Validators.required]),
-    user_id : new FormControl(parseInt(localStorage.getItem('userId')), [Validators.required]),
-    startDate : new FormControl(this.datePipe.transform(new Date(), "yyyy-MM-dd'T'hh:mm"), [Validators.required]),
-    endDate : new FormControl('s', [Validators.required]),
-    returned : new FormControl(0, [Validators.required]),
-    returnDate: new FormControl('', [Validators.required])
+    phoneNumber : new FormControl('', [Validators.required, Validators.pattern("^(00355|\\+355|0)[0-9]{9}$")]),
+    product_id : new FormControl(0),
+    user_id : new FormControl(parseInt(localStorage.getItem('userId'))),
+    startDate : new FormControl(this.getDateTime()),
+    endDate : new FormControl('s'),
+    returned : new FormControl(0),
   });
   todaydate= "2023.02.13";
   ngOnInit(): void {
@@ -42,17 +43,30 @@ export class ReserveBookComponent implements OnInit {
   get phoneNumber() {
     return this.reserveForm.get('phoneNumber');
   }
+  get endDate() {
+    return this.reserveForm.get('endDate');
+  }
   getDateTime(): string {
-    return this.datePipe.transform(new Date(), "yyyy-MM-dd'T'hh:mm");
+    return this.datePipe.transform(new Date(), "dd.MM.yyyy'");
   }
   reserveBook() {
+    this.reserveForm.value.returned = 0;
+    this.reserveForm.value.startDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss.sss");
+    this.reserveForm.value.endDate = this.datePipe.transform(this.reserveForm.value.endDate, "yyyy-MM-dd'T'HH:mm:ss.sss");
+    this.reserveForm.value.product_id = this.data.element;
+    this.reserveForm.value.user_id = parseInt(localStorage.getItem('userId'));
+    console.log(this.reserveForm.value);
     if(this.reserveForm.valid) {
-      this.reserveForm.value.startDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss.sss");
-      this.http.post<any>("https://localhost:5001/api/IssuedBook", this.reserveForm.value, {headers: new HttpHeaders({'Content-Type': 'application/json'})}).subscribe({
+      this.issuedService.addBook(this.reserveForm.value).subscribe({
         next:
           res => {
-
-            // window.location.reload();
+          if (res){
+            this._snackBar.open('Succesfully added', 'Close', {
+              duration: 3000,
+              verticalPosition: "bottom"
+            });
+          }
+          window.location.reload();
           }, error:
           err => {
             this._snackBar.open('Something went wrong', 'Close', {

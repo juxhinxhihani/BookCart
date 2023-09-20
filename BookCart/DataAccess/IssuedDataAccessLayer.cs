@@ -37,7 +37,7 @@ namespace BookCart.DataAccess
                         clientbooks.startDate = book.startDate;
                         clientbooks.endDate = book.endDate;
                         clientbooks.returned = book.returned;
-
+                        clientbooks.phoneNumber = book.phoneNumber;
                         booksList.Add(clientbooks);
                        
                     }
@@ -69,7 +69,7 @@ namespace BookCart.DataAccess
                 issuedbook.LastName = client.LastName;
                 issuedbook.returned = book.returned;
                 issuedbook.Category = dbBbook.Category;
-
+                issuedbook.phoneNumber = book.phoneNumber;
                 booksList.Add(issuedbook);
             }
 
@@ -95,7 +95,7 @@ namespace BookCart.DataAccess
                 issuedbook.LastName = client.LastName;
                 issuedbook.returned = book.returned;
                 issuedbook.Category = dbBbook.Category;
-
+                issuedbook.phoneNumber = book.phoneNumber;
                 booksList.Add(issuedbook);
             }
 
@@ -131,7 +131,8 @@ namespace BookCart.DataAccess
                         endDate = book.endDate,
                         issueId = book.issueId,
                         startDate = book.startDate,
-                        returnDate = book.returnDate
+                        returnDate = book.returnDate,
+                        phoneNumber = book.phoneNumber
                     };
                 }
             }
@@ -177,7 +178,8 @@ namespace BookCart.DataAccess
                         endDate = book.endDate,
                         issueId = book.issueId,
                         startDate = book.startDate,
-                        returnDate = book.returnDate
+                        returnDate = book.returnDate,
+                        phoneNumber = book.phoneNumber
                     };
                 }
             }
@@ -220,7 +222,6 @@ namespace BookCart.DataAccess
                     returned = book.returned,
                     user_id = book.user_id,
                     endDate = book.endDate,
-                    issueId = book.issueId,
                     startDate = book.startDate,
                     added = true
                 };
@@ -253,6 +254,7 @@ namespace BookCart.DataAccess
                         clientbooks.endDate = book.endDate;
                         clientbooks.returned = book.returned;
                         clientbooks.returnDate = book.returnDate;
+                        clientbooks.phoneNumber = book.phoneNumber;
                         booksList.Add(clientbooks);
                        
                     }

@@ -8,10 +8,11 @@ using BookCart.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookCart.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookCart.Controllers
 {
-    [Produces("application/json")]
+
     [Route("api/[controller]")]
     public class IssuedBookController: Controller
 	{
@@ -86,9 +87,10 @@ namespace BookCart.Controllers
         /// <summary>
         /// Add new issued book
         /// </summary>
+        /// <param name="book"></param>
         /// <returns>Add book</returns>
         [HttpPost]
-        public async Task<IssuedBookResponse> addBook([FromBody] IssuedBook book)
+        public async Task<IssuedBookResponse> addBook([FromBody]IssuedBook book)
         {
             return await Task.FromResult(_bookService.addIssuedBook(book)).ConfigureAwait(true);
         }

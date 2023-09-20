@@ -12,6 +12,17 @@ namespace BookCart.Models
         public DateTime? endDate { get; set; }
         public int returned { get; set; }
         public DateTime? returnDate { get; set; }
+        public string phoneNumber { get; set; }
+    }
+    public class AddIssuedBook
+    {
+        public int user_id { get; set; }
+        public int product_id { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
+        public int returned { get; set; }
+        public DateTime? returnDate { get; set; }
+        public string phoneNumber { get; set; }
     }
     public class IssuedBookClient : BaseResponse
     {
@@ -21,6 +32,7 @@ namespace BookCart.Models
         public DateTime? endDate { get; set; }
         public int returned { get; set; }
         public DateTime? returnDate { get; set; }
+        public string phoneNumber { get; set; }
     }
 
     public class BaseResponse
@@ -38,5 +50,6 @@ namespace BookCart.Models
         public int returned { get; set; } = 0;
         public bool added { get; set; }
         public DateTime? returnDate { get; set; }
+        public string phoneNumber { get; set; }
     }
 }

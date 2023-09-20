@@ -5,17 +5,24 @@
     </mat-card-header>
     <mat-card-content>
       <form class="example-form" [formGroup]="reserveForm">
-<!--        <mat-label>Reserve Form</mat-label>-->
+        <mat-label> Phone Number</mat-label>
         <br>
         <mat-form-field class="mat-form-field-fluid">
 <!--          <button prefix mat-icon-button disabled=true style="margin-right: 22px;">+355</button>-->
-          <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-          <mat-error style="margin-bottom: 15px" *ngIf="phoneNumber.touched && phoneNumber.invalid">Phone number is
+          <input width="100px" matInput placeholder="+355*********" formControlName="phoneNumber" required>
+          <mat-error style="margin-bottom: 15px" *ngIf="phoneNumber.touched && phoneNumber.value.isEmpty">Phone number is
             required</mat-error>
+          <mat-error style="margin-bottom: 15px" *ngIf="reserveForm.hasError('pattern','phoneNumber')">Mobile is invalid</mat-error>
         </mat-form-field><br>
-        <mat-label>Start Time</mat-label><br>
+        <mat-label>From</mat-label><br>
         <mat-form-field class="mat-form-field-fluid">
-          <input matInput type="date" [value]="todaydate"  min="{{getDateTime()}}" class="control" formControlName="startDate" name="startDate" placeholder="Start Date">
+          <input matInput type="text" class="control" formControlName="startDate" name="startDate" readonly>
+
+        </mat-form-field>
+        <mat-label>To</mat-label><br>
+        <mat-form-field class="mat-form-field-fluid">
+          <input matInput type="date"  class="control" formControlName="endDate" name="endDate" required>
+
         </mat-form-field>
         <br>
         <br>
