@@ -10,13 +10,13 @@
           <table mat-table [dataSource]="dataSource" matSort>
 
             <ng-container matColumnDef="issueId">
-              <th style="width:5% !important;" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-              <td style="width:5% !important;" mat-cell *matCellDef="let row"> {{row.issueId}} </td>
+              <th style="width:6% !important;" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <td style="width:6% !important;" mat-cell *matCellDef="let row"> {{row.issueId}} </td>
             </ng-container>
 
             <ng-container matColumnDef="firstName">
-              <th style="width:15% !important;" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-              <td style="width:15% !important;" mat-cell *matCellDef="let row"> {{row.firstName}} {{row.lastName}}</td>
+              <th style="width:15% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+              <td style="width:15% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-cell *matCellDef="let row"> {{row.firstName}} {{row.lastName}}</td>
             </ng-container>
 
             <ng-container matColumnDef="book">
@@ -25,8 +25,8 @@
             </ng-container>
 
             <ng-container matColumnDef="author">
-              <th style="width:17% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-header-cell *matHeaderCellDef mat-sort-header> Author</th>
-              <td style="width:17% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-cell *matCellDef="let row"> {{row.author}} </td>
+              <th style="width:15% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-header-cell *matHeaderCellDef mat-sort-header> Author</th>
+              <td style="width:15% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-cell *matCellDef="let row"> {{row.author}} </td>
             </ng-container>
             <ng-container matColumnDef="phoneNumber">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
