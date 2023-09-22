@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { AddtocartComponent } from './components/addtocart/addtocart.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
@@ -36,7 +35,9 @@ import { BookFormComponent } from './components/book-form/book-form.component';
 import { ReserveBookComponent } from './components/reserve-book/reserve-book.component';
 import { IssuedBookListComponent } from './components/issued-book-list/issued-book-list.component';
 import { PendingListComponent } from './components/pending-list/pending-list.component';
-
+import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,9 @@ import { PendingListComponent } from './components/pending-list/pending-list.com
     BookFormComponent,
     ReserveBookComponent,
     IssuedBookListComponent,
-    PendingListComponent
+    PendingListComponent,
+    MyReservationsComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     NgMaterialModule,
@@ -73,7 +76,8 @@ import { PendingListComponent } from './components/pending-list/pending-list.com
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },

@@ -11,6 +11,7 @@ import {SnackbarService} from "../../services/snackbar.service";
 import {takeUntil} from "rxjs/operators";
 import {DeleteBookComponent} from "../admin/delete-book/delete-book.component";
 import {PendingBooks} from "../../models/pendingBooks";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-pending-list',
@@ -31,6 +32,7 @@ export class PendingListComponent implements OnInit {
     private bookService: IssuedBookService,
     private datePipe : DatePipe,
     public dialog: MatDialog,
+    private _snackBar:MatSnackBar,
     private snackBarService: SnackbarService) {
   }
 
@@ -60,21 +62,20 @@ export class PendingListComponent implements OnInit {
     }
   }
 
-  deleteConfirm(id: number): void {
-    const dialogRef = this.dialog.open(DeleteBookComponent, {
-      data: id
-    });
-
-    dialogRef.afterClosed()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(result => {
-        if (result === 1) {
-          this.getAllBookData();
-          this.snackBarService.showSnackBar('Data deleted successfully');
-        } else {
-          this.snackBarService.showSnackBar('Error occurred!! Try again');
-        }
-      });
+  approve(id: number) {
+    this.bookService.openConfirmDialog('Are you sure you want to approve it?')
+      .afterClosed().subscribe((res => {
+      if (res) {
+        this.bookService.approve(id).subscribe((result) => {
+          this._snackBar.open('Succesfully approved', 'Close', {
+            duration: 3000,
+            verticalPosition: "bottom"
+          });
+          this.ngOnInit();
+        });
+        setTimeout(() => window.location.reload(), 1500)
+      }
+    }))
   }
 
   ngOnDestroy() {

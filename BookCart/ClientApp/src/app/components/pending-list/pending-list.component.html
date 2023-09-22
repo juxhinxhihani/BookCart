@@ -40,7 +40,7 @@
 
               <th mat-header-cell *matHeaderCellDef> Approve </th>
               <td mat-cell *matCellDef="let row">
-                <button mat-icon-button color="accent" (click)="deleteConfirm(row.bookId)">
+                <button mat-icon-button color="accent" (click)="approve(row.issueId)">
                   <mat-icon matTooltip="Approve">task_alt</mat-icon>
                 </button>
               </td>

@@ -119,6 +119,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
               {
                 "input": "src/main.scss",
@@ -144,8 +147,11 @@
                 "input": "src/assets/purple-green.css",
                 "bundleName": "purple-green"
               }
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "e2e": {

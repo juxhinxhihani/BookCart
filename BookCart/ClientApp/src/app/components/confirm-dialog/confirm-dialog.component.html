@@ -1,0 +1,9 @@
+<h1 *ngIf="userData.userTypeId==userType.admin" mat-dialog-title>Confirm Approve</h1>
+<h1  *ngIf="userData.userTypeId==userType.user" mat-dialog-title>Confirm Return</h1>
+<div mat-dialog-content style="width: 270px">{{data.message}}</div>
+<div mat-dialog-actions class="mt-15">
+  <div class="position" style="align-content: center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Yes</button>
+    <button mat-raised-button color="warn" mat-dialog-close>No</button>
+  </div>
+</div>

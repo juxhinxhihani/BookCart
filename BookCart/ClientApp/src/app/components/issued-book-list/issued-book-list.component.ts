@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Book} from "../../models/book";
 import {MatPaginator} from "@angular/material/paginator";
@@ -12,6 +12,10 @@ import {DeleteBookComponent} from "../admin/delete-book/delete-book.component";
 import {IssuedBook} from "../../models/issuedBook";
 import {IssuedBookService} from "../../services/issued-book.service";
 import {DatePipe} from "@angular/common";
+import {MatSnackBar} from "@angular/material/snack-bar";
+
+class id {
+}
 
 @Component({
   selector: 'app-issued-book-list',
@@ -21,7 +25,12 @@ import {DatePipe} from "@angular/common";
 })
 export class IssuedBookListComponent implements OnInit {
 
+  @Input()
+  childId: number;
+
   displayedColumns: string[] = ['issueId', 'bookTitle', 'startDate', 'endDate', 'phoneNumber', 'operation'];
+  displayedColumns2: string[] = ['issueId', 'bookTitle', 'author','startDate', 'returnDate'];
+
   userID;
   dataSource = new MatTableDataSource<IssuedBook>();
 
@@ -33,6 +42,7 @@ export class IssuedBookListComponent implements OnInit {
     private bookService: IssuedBookService,
     private datePipe : DatePipe,
     public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
     private snackBarService: SnackbarService) {
   }
 
@@ -45,14 +55,27 @@ export class IssuedBookListComponent implements OnInit {
   }
 
   getAllBookData(userID) {
-    this.bookService.getReserveBooks(userID)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data: IssuedBook[]) => {
-        // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
-        this.dataSource.data = Object.values(data);
-      }, error => {
-        console.log('Error ocurred while fetching book details : ', error);
-      });
+    if(this.childId == 1) {
+      this.bookService.getReserveBooks(userID)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((data: IssuedBook[]) => {
+          // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
+          this.dataSource.data = Object.values(data);
+        }, error => {
+          console.log('Error ocurred while fetching book details : ', error);
+        });
+    }
+    else{
+      this.bookService.getReturnBooks(userID)
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((data: IssuedBook[]) => {
+          console.log(data)
+          // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
+          this.dataSource.data = Object.values(data);
+        }, error => {
+          console.log('Error ocurred while fetching book details : ', error);
+        });
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -62,23 +85,24 @@ export class IssuedBookListComponent implements OnInit {
     }
   }
 
-  deleteConfirm(id: number): void {
-    const dialogRef = this.dialog.open(DeleteBookComponent, {
-      data: id
-    });
+  return(id: number) {
+    this.bookService.openConfirmDialog('Are you sure you want to return it?')
+      .afterClosed().subscribe((res => {
+      if (res) {
+        this.bookService.return(id).subscribe((result) => {
 
-    dialogRef.afterClosed()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(result => {
-        if (result === 1) {
-          this.getAllBookData(this.userID);
-          this.snackBarService.showSnackBar('Data deleted successfully');
-        } else {
-          this.snackBarService.showSnackBar('Error occurred!! Try again');
-        }
-      });
+          this._snackBar.open('Succesfully returned', 'Close', {
+            duration: 3000,
+            verticalPosition: "bottom"
+          });
+          this.ngOnInit();
+        });
+        setTimeout(() => window.location.reload(), 1500)
+      }
+
+    }))
+
   }
-
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
