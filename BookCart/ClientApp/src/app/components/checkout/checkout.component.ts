@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     name: ['', Validators.required],
     addressLine1: ['', Validators.required],
     addressLine2: ['', Validators.required],
-    pincode: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9][0-9]{5}$')])],
+    pincode: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9][0-9]{3}$')])],
     state: ['', [Validators.required]]
   });
 

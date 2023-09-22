@@ -59,16 +59,6 @@ namespace BookCart
                 {
                     Title = "BookCart API",
                     Version = "v1",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Ankit Sharma",
-                        Url = new Uri("https://ankitsharmablogs.com/"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "MIT Licenese",
-                        Url = new Uri("https://github.com/AnkitSharma-007/BookCart/blob/master/LICENSE"),
-                    }
                 });
 
                 c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

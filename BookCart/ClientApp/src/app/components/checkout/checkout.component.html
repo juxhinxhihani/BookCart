@@ -17,7 +17,10 @@
                             <input matInput placeholder="Name" formControlName="name" required>
                             <mat-error *ngIf="name.touched && name.invalid">Name is required</mat-error>
                         </mat-form-field>
-
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="City" formControlName="state" required>
+                          <mat-error *ngIf="state.touched && state.invalid">City is required</mat-error>
+                        </mat-form-field>
                         <mat-form-field class="full-width">
                             <input matInput placeholder="Address Line 1" formControlName="addressLine1" required>
                             <mat-error *ngIf="addressLine1.touched && addressLine1.invalid">Address is required
@@ -31,17 +34,14 @@
                         </mat-form-field>
 
                         <mat-form-field class="full-width">
-                            <input matInput placeholder="Pincode" formControlName="pincode" required>
-                            <mat-error *ngIf="pincode.touched && pincode.hasError('required')">Pincode is required
+                            <input matInput placeholder="ZipCode" formControlName="pincode" required>
+                            <mat-error *ngIf="pincode.touched && pincode.hasError('required')">ZipCode is required
                             </mat-error>
                             <mat-error *ngIf="pincode.touched && pincode.hasError('pattern')">
-                                Pincode must have 6 digits only and cannot start with 0
+                                Pincode must have 4 digits only and cannot start with 0
                             </mat-error>
                         </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <input matInput placeholder="State" formControlName="state" required>
-                            <mat-error *ngIf="state.touched && state.invalid">State is required</mat-error>
-                        </mat-form-field>
+
                         <mat-card-actions align="right">
                             <div fxFlex></div>
                             <button type="submit" mat-raised-button color="primary">Place Order</button>
