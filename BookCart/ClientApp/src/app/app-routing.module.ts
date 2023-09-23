@@ -17,6 +17,7 @@ import {IssueBookComponent} from "./components/issue-book/issue-book.component";
 import {IssuedBookListComponent} from "./components/issued-book-list/issued-book-list.component";
 import {PendingListComponent} from "./components/pending-list/pending-list.component";
 import {MyReservationsComponent} from "./components/my-reservations/my-reservations.component";
+import {AdminReservedComponent} from "./components/admin-reserved/admin-reserved.component";
 
 const appRoutes: Routes = [
   { path: '', component: BuyOrBookComponent, pathMatch: 'full' },
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
   { path: 'shopping-cart', component: ShoppingcartComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'myorders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-  { path: 'pendings', component: PendingListComponent, canActivate: [AuthGuard] },
+  { path: 'pendings', component: AdminReservedComponent, canActivate: [AuthGuard] },
   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
   {
     path: 'admin/books',

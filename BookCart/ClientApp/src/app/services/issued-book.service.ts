@@ -22,6 +22,9 @@ export class IssuedBookService {
   addBook(book: IssuedBookService) {
     return this.http.post<IssuedBookService>(this.baseURL , JSON.stringify(book), {headers: this.ACCEPT_TYPE_HEADER});
   }
+  getallissued(){
+    return this.http.get<PendingBooks[]>(this.baseURL);
+  }
   getReserveBooks(userId: number){
     return this.http.get<IssuedBook[]>(this.baseURL + '/' + userId);
   }

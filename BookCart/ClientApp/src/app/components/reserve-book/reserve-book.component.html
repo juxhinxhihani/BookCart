@@ -21,7 +21,7 @@
         </mat-form-field>
         <mat-label>To</mat-label><br>
         <mat-form-field class="mat-form-field-fluid">
-          <input matInput type="date"  class="control" formControlName="endDate" name="endDate" required>
+          <input matInput type="date"  class="control" min="{{getDateTime()}}" formControlName="endDate" name="endDate" required>
 
         </mat-form-field>
         <br>

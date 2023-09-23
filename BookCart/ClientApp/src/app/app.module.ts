@@ -38,6 +38,7 @@ import { PendingListComponent } from './components/pending-list/pending-list.com
 import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { AdminReservedComponent } from './components/admin-reserved/admin-reserved.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     PendingListComponent,
     MyReservationsComponent,
     ConfirmDialogComponent,
+    AdminReservedComponent,
   ],
   imports: [
     NgMaterialModule,

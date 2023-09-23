@@ -47,7 +47,7 @@ export class ReserveBookComponent implements OnInit {
     return this.reserveForm.get('endDate');
   }
   getDateTime(): string {
-    return this.datePipe.transform(new Date(), "dd.MM.yyyy'");
+    return this.datePipe.transform(new Date(), "yyyy-MM-dd");
   }
   reserveBook() {
     this.reserveForm.value.returned = 0;
@@ -65,6 +65,7 @@ export class ReserveBookComponent implements OnInit {
               duration: 3000,
               verticalPosition: "bottom"
             });
+
           }
           window.location.reload();
           }, error:

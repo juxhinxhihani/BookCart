@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {IssuedBook} from "../../models/issuedBook";
 import {MatPaginator} from "@angular/material/paginator";
@@ -22,8 +22,11 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class PendingListComponent implements OnInit {
 
   displayedColumns: string[] = ['issueId', 'firstName', 'book', 'author', 'phoneNumber','returnDate','Approve'];
-  dataSource = new MatTableDataSource<PendingBooks>();
+  displayedColumns2: string[] = ['issueId', 'firstName', 'book', 'author', 'phoneNumber', 'startDate'];
 
+  dataSource = new MatTableDataSource<PendingBooks>();
+  @Input()
+  childId: number;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -44,15 +47,28 @@ export class PendingListComponent implements OnInit {
   }
 
   getAllBookData() {
-    this.bookService.getPendingBooks()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data: PendingBooks[]) => {
-        // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
-        console.log(data)
-        this.dataSource.data = Object.values(data);
-      }, error => {
-        console.log('Error ocurred while fetching book details : ', error);
-      });
+    if(this.childId == 1) {
+      this.bookService.getPendingBooks()
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((data: PendingBooks[]) => {
+          // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
+          console.log(data)
+          this.dataSource.data = Object.values(data);
+        }, error => {
+          console.log('Error ocurred while fetching book details : ', error);
+        });
+    }
+    else {
+      this.bookService.getallissued()
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((data: PendingBooks[]) => {
+          // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
+          console.log(data)
+          this.dataSource.data = Object.values(data);
+        }, error => {
+          console.log('Error ocurred while fetching book details : ', error);
+        });
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -73,7 +89,7 @@ export class PendingListComponent implements OnInit {
           });
           this.ngOnInit();
         });
-        setTimeout(() => window.location.reload(), 1500)
+        setTimeout(() => window.location.reload(), 1000)
       }
     }))
   }

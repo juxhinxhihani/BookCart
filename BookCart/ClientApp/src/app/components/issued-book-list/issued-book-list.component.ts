@@ -29,7 +29,7 @@ export class IssuedBookListComponent implements OnInit {
   childId: number;
 
   displayedColumns: string[] = ['issueId', 'bookTitle', 'startDate', 'endDate', 'phoneNumber', 'operation'];
-  displayedColumns2: string[] = ['issueId', 'bookTitle', 'author','startDate', 'returnDate'];
+  displayedColumns2: string[] = ['issueId', 'bookTitle','startDate', 'returnDate'];
 
   userID;
   dataSource = new MatTableDataSource<IssuedBook>();
@@ -60,6 +60,8 @@ export class IssuedBookListComponent implements OnInit {
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((data: IssuedBook[]) => {
           // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
+          console.log(data);
+
           this.dataSource.data = Object.values(data);
         }, error => {
           console.log('Error ocurred while fetching book details : ', error);
@@ -69,7 +71,6 @@ export class IssuedBookListComponent implements OnInit {
       this.bookService.getReturnBooks(userID)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((data: IssuedBook[]) => {
-          console.log(data)
           // data.forEach( x=> x.startDate = this.datePipe.transform((x.startDate, "dd.MM.yyyy'")))
           this.dataSource.data = Object.values(data);
         }, error => {
@@ -77,7 +78,14 @@ export class IssuedBookListComponent implements OnInit {
         });
     }
   }
+  getdatetime(){
+    // return this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss.sss");
+    return this.datePipe.transform(new Date(), 'dd/MM/yyyy')
+  }
+  compareDates(element): boolean {
 
+    return element.endDate > this.datePipe.transform(new Date(), "yyyy-MM-dd'T'hh:mm.ss.sss");
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
@@ -97,7 +105,7 @@ export class IssuedBookListComponent implements OnInit {
           });
           this.ngOnInit();
         });
-        setTimeout(() => window.location.reload(), 1500)
+        setTimeout(() => window.location.reload(), 1000)
       }
 
     }))
@@ -107,4 +115,6 @@ export class IssuedBookListComponent implements OnInit {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
+
+  protected readonly Date = Date;
 }

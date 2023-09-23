@@ -18,10 +18,6 @@
               <th style="width:35% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
               <td style="width:35% !important;padding-right: 15px;padding-left: 10px;margin-right: 10px" mat-cell *matCellDef="let row"> {{row.bookTitle}} </td>
             </ng-container>
-            <ng-container *ngIf="childId == 2" matColumnDef="author">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Returned Date </th>
-              <td mat-cell *matCellDef="let row"> {{row.author}} </td>
-            </ng-container>
             <ng-container matColumnDef="startDate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
               <td mat-cell *matCellDef="let row"> {{row.startDate | date: 'dd/MM/yyyy'}} </td>
@@ -29,7 +25,7 @@
 
             <ng-container *ngIf="childId == 1" matColumnDef="endDate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
-              <td mat-cell *matCellDef="let row"> {{row.endDate | date: 'dd/MM/yyyy'}} </td>
+              <td mat-cell *matCellDef="let row"> {{compareDates(row) ? (row.endDate | date: 'dd/MM/yyyy') : 'Out of date'}} </td>
             </ng-container>
 
             <ng-container *ngIf="childId == 1" matColumnDef="phoneNumber">
@@ -58,7 +54,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
             </div>
           </table>
-          <mat-paginator  [pageSizeOptions]="[ 5, 10, 25, 50 ]"></mat-paginator>
+          <mat-paginator  [pageSizeOptions]="[ 10, 25, 50 ]"></mat-paginator>
         </div>
       </mat-card-content>
     </div>

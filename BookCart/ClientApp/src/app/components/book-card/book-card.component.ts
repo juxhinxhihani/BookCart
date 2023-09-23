@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 import { User } from 'src/app/models/user';
 import { SubscriptionService } from 'src/app/services/subscription.service';
+import {UserType} from "../../models/usertype";
 
 @Component({
   selector: 'app-book-card',
@@ -17,7 +18,7 @@ export class BookCardComponent implements OnInit {
 
   isActive = false;
   userData$: Observable<User>;
-
+  userType : UserType;
   constructor(private router: Router, private subscriptionService: SubscriptionService) { }
 
   ngOnInit() {
@@ -27,4 +28,6 @@ export class BookCardComponent implements OnInit {
   goToPage(id: number) {
     this.router.navigate(['/books/details/', id]);
   }
+
+  protected readonly UserType = UserType;
 }

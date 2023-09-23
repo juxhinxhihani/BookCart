@@ -16,10 +16,10 @@
             </a>
         </div>
         <p *ngIf="book.price != 0.00">{{book.price | currency : 'EUR'}}</p>
-      <div *ngIf="book.price != 0.00">
+      <div *ngIf="book.price != 0.00 && (userData$ | async).userTypeId == 2">
         <app-addtocart [bookId]="book.bookId"></app-addtocart>
       </div>
-      <div *ngIf="book.price == 0.00">
+      <div *ngIf="book.price == 0.00 && (userData$ | async).userTypeId == 2">
         <app-book-issued-books [bookId]="book.bookId"></app-book-issued-books>
       </div>
     </mat-card-content>
