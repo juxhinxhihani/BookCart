@@ -18,7 +18,7 @@ namespace BookCart.DataAccess
 
         public void AddBookToCart(int userId, int bookId)
         {
-            string cartId = GetCartId(userId);
+            string cartId = GetCartId(userId); //get cart id from cart table 
             int quantity = 1;
             if (_dbContext.Book.FirstOrDefault(x => x.BookId == bookId).toBoook)
             {

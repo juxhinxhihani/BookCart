@@ -24,7 +24,6 @@ namespace BookCart.DataAccess
 
             if (userDetails != null)
             {
-
                 user = new UserMaster
                 {
                     Username = userDetails.Username,
@@ -41,15 +40,13 @@ namespace BookCart.DataAccess
 
         public int RegisterUser(UserMaster userData)
         {
-            try
-            {
+            try{
                 userData.UserTypeId = 2;
                 _dbContext.UserMaster.Add(userData);
                 _dbContext.SaveChanges();
                 return 1;
             }
-            catch
-            {
+            catch{
                 throw;
             }
         }

@@ -26,18 +26,7 @@ export class UserRegistrationComponent implements OnDestroy {
     private customValidation: CustomValidationService) { }
 
 
-  registrationForm = this.fb.group({
-    firstname: ['', Validators.required],
-    lastname: ['', Validators.required],
-    username: ['', [Validators.required], this.customValidation.userNameValidator.bind(this.customValidation)],
-    password: ['', Validators.compose([Validators.required, this.customValidation.patternValidator()])],
-    confirmPassword: ['', [Validators.required]],
-    gender: ['', Validators.required],
-  },
-    {
-      validator: this.customValidation.confirmPasswordValidator,
-    }
-  );
+
 
   get firstname() {
     return this.registrationForm.get('firstname');
@@ -60,7 +49,18 @@ export class UserRegistrationComponent implements OnDestroy {
   get confirmPassword() {
     return this.registrationForm.get('confirmPassword');
   }
-
+  registrationForm = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      username: ['', [Validators.required], this.customValidation.userNameValidator.bind(this.customValidation)],
+      password: ['', Validators.compose([Validators.required, this.customValidation.patternValidator()])],
+      confirmPassword: ['', [Validators.required]],
+      gender: ['', Validators.required],
+    },
+    {
+      validator: this.customValidation.confirmPasswordValidator,
+    }
+  );
   registerUser() {
     if (this.registrationForm.valid) {
       this.userService.registerUser(this.registrationForm.value)

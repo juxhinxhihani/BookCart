@@ -17,14 +17,11 @@ namespace BookCart.DataAccess
             _dbContext = dbContext;
         }
 
-        public List<Book> GetAllBooks()
-        {
-            try
-            {
+        public List<Book> GetAllBooks() {
+            try {
                 return _dbContext.Book.AsNoTracking().Where(x => x.stock > 0).ToList();
             }
-            catch
-            {
+            catch {
                 throw;
             }
         }

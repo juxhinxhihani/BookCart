@@ -24,7 +24,6 @@ export class WishlistService {
         return response;
       }));
   }
-
   getWishlistItems(userId: number) {
     return this.http.get(this.baseURL + userId)
       .pipe(map((response: Book[]) => {

@@ -13,7 +13,7 @@
                 [routerLink]='["/wishlist"]'>
                 <mat-icon matBadge="{{wishListCount$ | async}}" matBadgeColor="warn">favorite</mat-icon>
             </button>
-            <button mat-icon-button [routerLinkActive]='["link-active"]' [routerLink]='["/shopping-cart"]'>
+            <button mat-icon-button *ngIf="userData.userTypeId==userType.user" [routerLinkActive]='["link-active"]' [routerLink]='["/shopping-cart"]'>
                 <mat-icon matBadge="{{cartItemCount$ | async}}" matBadgeColor="warn">shopping_cart</mat-icon>
             </button>
             <button mat-button *ngIf="!userData.isLoggedIn" [routerLinkActive]='["link-active"]'
@@ -26,7 +26,7 @@
                     <mat-icon>account_circle</mat-icon> {{userData.username}} <mat-icon>arrow_drop_down</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item [routerLink]='["/myorders"]'>My Orders</button>
+                  <button *ngIf="userData.userTypeId==userType.user" mat-menu-item [routerLink]='["/myorders"]'>My Orders</button>
                   <button *ngIf="userData.userTypeId!=userType.admin" mat-menu-item [routerLink]='["/reservations"]'>My Reservations</button>
                   <button *ngIf="userData.userTypeId==userType.admin" mat-menu-item [routerLink]='["/pendings"]'>Pending for approve </button>
                   <button mat-menu-item (click)=logout()>Logout</button>

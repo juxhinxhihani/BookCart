@@ -15,18 +15,15 @@ namespace BookCart.DataAccess
             _dbContext = dbContext;
         }
 
-        public void ToggleWishlistItem(int userId, int bookId)
-        {
+        public void ToggleWishlistItem(int userId, int bookId) {
             string wishlistId = GetWishlistId(userId);
-            WishlistItems existingWishlistItem = _dbContext.WishlistItems.FirstOrDefault(x => x.ProductId == bookId && x.WishlistId == wishlistId);
-
-            if (existingWishlistItem != null)
-            {
+            WishlistItems existingWishlistItem = _dbContext.WishlistItems.FirstOrDefault(
+                x => x.ProductId == bookId && x.WishlistId == wishlistId);
+            if (existingWishlistItem != null) {
                 _dbContext.WishlistItems.Remove(existingWishlistItem);
                 _dbContext.SaveChanges();
             }
-            else
-            {
+            else {
                 WishlistItems wishlistItem = new WishlistItems
                 {
                     WishlistId = wishlistId,

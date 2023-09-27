@@ -20,32 +20,25 @@ namespace BookCart.DataAccess
             _dbContext = dbContext;
         }
         //for user
-        public List<IssuedBookClient> GetIssuedBookByusId(int userID)
-        {
-            try
-            {
-                List<IssuedBook> books = _dbContext.IssuedBook.Where(x => x.user_id == userID && x.returned == 0).ToList();
+        public List<IssuedBookClient> GetIssuedBookByusId(int userID) {
+            try {
+                List<IssuedBook> books = _dbContext.IssuedBook.Where(x => x.user_id == userID && 
+                                                                          x.returned == 0).ToList();
                 List<IssuedBookClient> booksList = new List<IssuedBookClient>();
-
-                if (books != null)
-                {
-                    foreach(IssuedBook book in books)
-                    {
+                if (books != null) {
+                    foreach(IssuedBook book in books) {
                         IssuedBookClient clientbooks = new IssuedBookClient();
                         clientbooks.issueId = book.issueId;
-                        clientbooks.bookTitle = _dbContext.Book.FirstOrDefault(x => x.BookId == book.product_id).Title;
+                        clientbooks.bookTitle = _dbContext.Book.FirstOrDefault(x => 
+                            x.BookId == book.product_id).Title;
                         clientbooks.startDate = book.startDate;
                         clientbooks.endDate = book.endDate;
                         clientbooks.returned = book.returned;
                         clientbooks.phoneNumber = book.phoneNumber;
-                        booksList.Add(clientbooks);
-                       
-                    }
-                    return booksList;
-                }
+                        booksList.Add(clientbooks); }
+                    return booksList; }
                 return null;
-            }catch(Exception ex)
-            {
+            }catch(Exception ex) {
                 throw new Exception(ex.Message.ToString());
             }
         }
@@ -59,18 +52,21 @@ namespace BookCart.DataAccess
             {
                 var issuedbook = new IssuedBookDto();
                 var dbBbook = _dbContext.Book.FirstOrDefault(x => x.BookId == book.product_id );
-                var client = _dbContext.UserMaster.FirstOrDefault(x => x.UserId == book.user_id);
-                issuedbook.issueId = book.issueId;
-                issuedbook.Author = dbBbook.Author;
-                issuedbook.BookTitle = dbBbook.Title;
-                issuedbook.startDate = book.startDate;
-                issuedbook.endDate = book.endDate;
-                issuedbook.FirstName = client.FirstName;
-                issuedbook.LastName = client.LastName;
-                issuedbook.returned = book.returned;
-                issuedbook.Category = dbBbook.Category;
-                issuedbook.phoneNumber = book.phoneNumber;
-                booksList.Add(issuedbook);
+                if (dbBbook != null)
+                {
+                    var client = _dbContext.UserMaster.FirstOrDefault(x => x.UserId == book.user_id);
+                    issuedbook.issueId = book.issueId;
+                    issuedbook.Author = dbBbook.Author;
+                    issuedbook.BookTitle = dbBbook.Title;
+                    issuedbook.startDate = book.startDate;
+                    issuedbook.endDate = book.endDate;
+                    issuedbook.FirstName = client.FirstName;
+                    issuedbook.LastName = client.LastName;
+                    issuedbook.returned = book.returned;
+                    issuedbook.Category = dbBbook.Category;
+                    issuedbook.phoneNumber = book.phoneNumber;
+                    booksList.Add(issuedbook);
+                }
             }
 
             return booksList;
@@ -195,13 +191,11 @@ namespace BookCart.DataAccess
         }
         public IssuedBookResponse addIssuedBook(IssuedBook book)
         {
-            try
-            {
-                var originalBook = _dbContext.Book.FirstOrDefault(x => x.BookId == book.product_id);
+            try {
+                var originalBook = _dbContext.Book.FirstOrDefault(x => 
+                    x.BookId == book.product_id);
                 if (book.product_id == null || book.user_id == null)
-                {
                     throw new Exception("Product id or user id should not be null");
-                }
                 if(!originalBook.isActive)
                     throw new Exception("Book is not active or is not to booked");
                 if (!originalBook.toBoook)
@@ -211,12 +205,10 @@ namespace BookCart.DataAccess
                 _dbContext.Update(originalBook);
                 _dbContext.Add(book);
                 var affectedRows = _dbContext.SaveChanges();
-                if (affectedRows < 2)
-                {
-                    throw new Exception("No affected rows on adding new book o");
+                if (affectedRows < 2) {
+                    throw new Exception("No affected rows on adding new book");
                 }
-                return new IssuedBookResponse()
-                {
+                return new IssuedBookResponse() {
                     error = false,
                     Message = "",
                     product_id = book.product_id,
@@ -227,8 +219,7 @@ namespace BookCart.DataAccess
                     added = true
                 };
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 return new IssuedBookResponse()
                 {
                     error = true,
